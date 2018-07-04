@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class EditActivity extends AppCompatActivity implements View.OnClickListener{
@@ -25,6 +26,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     public DbAdapter dbAdapter;
     public int index;
     private int mYear, mMonth, mDay;
+    private Spinner notify;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -48,6 +50,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         editnote = findViewById(R.id.editnote);
         btn_back = findViewById(R.id.btn_back);
         btn_ok = findViewById(R.id.btn_ok);
+        notify = findViewById(R.id.notify_spinner);
 
     }
     public void onClick(View v) {

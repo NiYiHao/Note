@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 public class DbAdapter {
@@ -18,9 +19,11 @@ public class DbAdapter {
     private DbHelper mDbHelper;
     private SQLiteDatabase mdb;
     private ContentValues values;
+    ArrayAdapter<CharSequence> nAdapter;
 
     public DbAdapter(Context mCtx) {
         this.mCtx = mCtx;
+        nAdapter = ArrayAdapter.createFromResource(mCtx, R.array.notify_array, android.R.layout.simple_spinner_item );
         open();
 
     }
@@ -87,4 +90,5 @@ public class DbAdapter {
         }
         return mdb.update(TABLE_NAME, values ,"_id="+ID,null);
     }
+
 }
