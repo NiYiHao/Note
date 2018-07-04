@@ -10,13 +10,16 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class EditActivity extends AppCompatActivity implements View.OnClickListener{
+public class EditActivity extends AppCompatActivity implements View.OnClickListener , AdapterView.OnItemSelectedListener{
     private Intent i ;
     Button btn_ok, btn_back;
     EditText editdate , editnote;
@@ -34,6 +37,10 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         btn_back.setOnClickListener(this);
         btn_ok.setOnClickListener(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.plants_array, android.R.layout.simple_spinner_item);
+        notify.setAdapter(adapter);
+        notify.setOnItemSelectedListener(this);
         bData = this.getIntent().getExtras();
         dbAdapter = new DbAdapter(this);
         if(bData.getString("type").equals("change")){
@@ -43,6 +50,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             editdate.setText(c.getString(1));
             editnote.setText(c.getString(2));
         }
+
     }
     public void initView(){
         text_name = findViewById(R.id.text_name);
@@ -51,7 +59,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         btn_back = findViewById(R.id.btn_back);
         btn_ok = findViewById(R.id.btn_ok);
         notify = findViewById(R.id.notify_spinner);
-
     }
     public void onClick(View v) {
         i = new Intent();
@@ -116,5 +123,15 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         return String.valueOf(year) + "-"
                 + String.valueOf(month+1) + "-"
                 +String.valueOf(day);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this, "您選擇"+parent.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

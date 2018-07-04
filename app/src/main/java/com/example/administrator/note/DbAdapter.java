@@ -19,11 +19,10 @@ public class DbAdapter {
     private DbHelper mDbHelper;
     private SQLiteDatabase mdb;
     private ContentValues values;
-    ArrayAdapter<CharSequence> nAdapter;
+
 
     public DbAdapter(Context mCtx) {
         this.mCtx = mCtx;
-        nAdapter = ArrayAdapter.createFromResource(mCtx, R.array.notify_array, android.R.layout.simple_spinner_item );
         open();
 
     }
