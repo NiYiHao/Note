@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper{
     public static final String KEY_ID = "_id";
-    public static final String KEY_DATA = "data";
+    public static final String KEY_DATE = "date";
     public static final String KEY_NOTE = "note";
     private static final String DATABASE_NAME = "Contact";
     private static final String TABLE_NAME = "member";
@@ -17,7 +17,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        final String DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +KEY_ID + " integer PRIMARY KEY autoincrement," + KEY_DATA + "," +KEY_NOTE +");";
+        final String DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +KEY_ID + " integer PRIMARY KEY autoincrement," + KEY_DATE + "," +KEY_NOTE +");";
         db.execSQL(DATABASE_CREATE);
     }
 
