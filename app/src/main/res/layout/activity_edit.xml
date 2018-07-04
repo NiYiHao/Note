@@ -42,21 +42,18 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="日期"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:onClick="onClick" />
 
             <EditText
                 android:id="@+id/editnote"
                 android:layout_width="match_parent"
-                android:layout_height="265dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="262dp"
+                android:layout_marginTop="2dp"
                 android:background="@null"
                 android:ems="10"
-                android:gravity="top"
-                android:hint="內容"
-                android:inputType="textPersonName"
-                android:requiresFadingEdge="vertical"
-                android:scrollbars="horizontal"
-                android:singleLine="false" />
+                android:inputType="textMultiLine" />
+
         </LinearLayout>
     </LinearLayout>
 

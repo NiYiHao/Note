@@ -1,6 +1,7 @@
 package com.example.administrator.note;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.icu.util.Calendar;
@@ -47,10 +48,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         editnote = findViewById(R.id.editnote);
         btn_back = findViewById(R.id.btn_back);
         btn_ok = findViewById(R.id.btn_ok);
+
     }
     public void onClick(View v) {
         i = new Intent();
         final Calendar c;
+
         switch(v.getId()){
             case R.id.editdate:
                 c =Calendar.getInstance();
@@ -60,11 +63,13 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        editdate.setText(year + "-" + (month+1) + "-" +dayOfMonth);
+                        String format = setDateFormat(year, month, dayOfMonth);
+                        editdate.setText(format);
                     }
                 },mYear,mMonth,mDay);
                 datePickerDialog.show();
                 break;
+
             case (R.id.btn_back):
                 if (bData.getString( "type" ).equals( "add" )) {
                     Intent i = new Intent( this, MainActivity.class );
@@ -75,6 +80,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity( i );
                 }
                 break;
+
             case (R.id.btn_ok):
                 new_data = editdate.getText().toString();
                 new_note = editnote.getText().toString();
@@ -102,5 +108,10 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
+    }
+    private String setDateFormat(int year , int month , int day){
+        return String.valueOf(year) + "-"
+                + String.valueOf(month+1) + "-"
+                +String.valueOf(day);
     }
 }
