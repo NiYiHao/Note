@@ -53,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = dbAdapter.listContacts();
         String[] columns = new String[]{
                 dbAdapter.KEY_DATE,
-                dbAdapter.KEY_NOTE
+                dbAdapter.KEY_NOTE,
         };
         int[] to = new int[]{
                 R.id.data_view,
                 R.id.note_date,
+                R.id.list_color
         };
         dataAdapter = new SimpleCursorAdapter(this, R.layout.list_item, cursor, columns, to, 0);
         listData.setAdapter(dataAdapter);

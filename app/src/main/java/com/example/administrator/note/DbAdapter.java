@@ -7,13 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class DbAdapter {
     public static final String KEY_ID = "_id";
     public static final String KEY_DATE = "date";
     public static final String KEY_NOTE = "note";
-    private static final String DATABASE_NAME = "Contact";
+    public static final String KEY_COLOR = "color";
     private static final String TABLE_NAME = "member";
     private final Context mCtx;
     private DbHelper mDbHelper;
@@ -46,7 +47,7 @@ public class DbAdapter {
     }
 
     public Cursor listContacts() {
-        Cursor mCursor = mdb.query(TABLE_NAME, new String[]{KEY_ID, KEY_DATE, KEY_NOTE},
+        Cursor mCursor = mdb.query(TABLE_NAME, new String[]{KEY_ID, KEY_DATE, KEY_NOTE , KEY_COLOR},
                 null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -56,7 +57,7 @@ public class DbAdapter {
 
     public Cursor queryById(int ID) {
         Cursor c = null;
-        c = mdb.query(true, TABLE_NAME, new String[]{KEY_ID, KEY_DATE, KEY_NOTE}, KEY_ID + " == " + ID,
+        c = mdb.query(true, TABLE_NAME, new String[]{KEY_ID, KEY_DATE, KEY_NOTE , KEY_COLOR}, KEY_ID + " == " + ID,
                 null, null, null, null, null);
         if (c != null) {
             c.moveToFirst();
@@ -64,11 +65,12 @@ public class DbAdapter {
         return c;
     }
 
-    public long createContacts(String data, String note) {
+    public long createContacts(String data, String note , String color) {
         try {
             values = new ContentValues();
             values.put(KEY_DATE, data);
             values.put(KEY_NOTE, note);
+            values.put(KEY_COLOR,color);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -77,11 +79,12 @@ public class DbAdapter {
         return mdb.insert(TABLE_NAME, null, values);
     }
 
-    public long updateContacts(int ID, String data, String note) {
+    public long updateContacts(int ID, String data, String note , String color) {
         try {
             values = new ContentValues();
             values.put(KEY_DATE, data);
             values.put(KEY_NOTE, note);
+            values.put(KEY_COLOR, color);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

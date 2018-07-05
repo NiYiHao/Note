@@ -103,7 +103,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 dbAdapter = new DbAdapter(EditActivity.this);
                 if(bData.getString("type").equals("add")){
                     try{
-                        dbAdapter.createContacts(new_data,new_note);
+                        dbAdapter.createContacts(new_data,new_note ,notify.getSelectedItem().toString());
                     }catch(Exception e){
                         e.printStackTrace();
                     }finally{
@@ -113,7 +113,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 else{
                     try{
-                        dbAdapter.updateContacts(index,new_data,new_note);
+                        dbAdapter.updateContacts(index,new_data,new_note , notify.getSelectedItem().toString());
                     }catch (Exception e){
                         e.printStackTrace();
                     }finally{

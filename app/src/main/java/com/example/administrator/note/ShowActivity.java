@@ -52,6 +52,7 @@ public class ShowActivity extends AppCompatActivity {
         date_view = findViewById(R.id.date_view);
         note_view = findViewById(R.id.note_view);
 
+
     }
 
     @Override
