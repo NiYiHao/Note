@@ -1,20 +1,24 @@
 package com.example.administrator.note;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +34,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     public int index;
     private int mYear, mMonth, mDay;
     private Spinner notify;
+    private LinearLayout background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -59,6 +64,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         btn_back = findViewById(R.id.btn_back);
         btn_ok = findViewById(R.id.btn_ok);
         notify = findViewById(R.id.notify_spinner);
+        background = findViewById( R.id.background );
     }
     public void onClick(View v) {
         i = new Intent();
@@ -127,6 +133,15 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String sInfo=parent.getItemAtPosition(position).toString();
+        if(sInfo.equals( "淺藍" )){
+            background.setBackgroundColor( Color.rgb( 0,245,255 ) );
+        }else if(sInfo.equals( "淺紅" )){
+            background.setBackgroundColor( Color.rgb( 255,105,180 ) );
+        }else{
+            background.setBackgroundColor( Color.rgb( 144,238,144 ) );
+        }
+
         Toast.makeText(this, "您選擇"+parent.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
     }
 
